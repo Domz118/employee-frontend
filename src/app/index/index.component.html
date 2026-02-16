@@ -1,0 +1,24 @@
+
+<header class="header">
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Nosifer&display=swap" rel="stylesheet"> -->
+              <div class="menu">
+              <div class="title">
+                <h1><b>HEALTH HUB</b></h1>
+                <h6> Hospital Management System</h6></div>
+                <a (click)="logout()">Logout</a>
+                <a (click)="about()">About us</a>
+                <a (click)="home()">Home</a>
+                <a style = "color: rgb(21, 255, 157);">Hello {{ username }}</a>
+              </div>
+  </header>
+
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a>
+    <a (click)="departmentList()" *ngIf="showAdminBoard">Department</a>
+    <a (click)="employeeList()">Employee</a>
+
+
+  </div>
+  <span class="hamburger" id="hamburger" (click)="openNav()">☰ </span>
+<!-- </div> -->
+<router-outlet></router-outlet>

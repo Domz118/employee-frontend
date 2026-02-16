@@ -1,0 +1,19 @@
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { TokenStorageService } from 'src/app/service/token-storage.service';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AdminGuard implements CanActivate {
+  constructor(private tokenService: TokenStorageService, private router: Router) {}
+
+  canActivate(): boolean {
+    if (this.tokenService.getToken()) {
+      return true;
+    }
+   // this.router.navigate(['/login']);
+   // return false;
+  }
+}
+

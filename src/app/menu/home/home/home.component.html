@@ -1,0 +1,141 @@
+<app-index></app-index>
+
+<br>
+
+<div class="image"></div>
+<div class="item">
+  <img src="http://www.mangalahospital.in/wp-content/uploads/2017/11/banner.jpg" />
+</div>
+
+<!-- ADMIN ONLY -->
+<div *ngIf="showAdminBoard">
+  <h2>All Users</h2>
+
+  
+  <button (click)="uploadImage()">Upload</button>
+
+  <div *ngIf="profileImageUrls.length > 0">
+    <div *ngFor="let url of profileImageUrls">
+      <img [src]="url" alt="Profile Image" width="150"/>
+    </div>
+  </div>
+
+  <!-- File Upload -->
+  <form enctype="multipart/form-data">
+    <fieldset>
+      <div class="form-group">
+        <div>
+          <input type="file" (change)="onUploadFiles($event)" name="files" multiple class="form-control" />
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+  <!-- Progress Bar -->
+  <div *ngIf="fileStatus.status==='progress'" class="mt-2">
+    <div class="progress">
+      <div [style.width.%]="fileStatus.percent"
+           class="progress-bar progress-bar-animated bg-info"
+           role="progressbar">
+        {{ fileStatus.requestType }} {{ fileStatus.percent }}%
+      </div>
+    </div>
+  </div>
+
+  <!-- File List -->
+  <div *ngIf="filenames && filenames.length > 0" class="js-upload-finished mt-3">
+    <h3>Processed files</h3>
+    <div *ngFor="let filename of filenames" class="list-group">
+      <a (click)="onDownloadFile(filename)" class="list-group-item list-group-item-success" style="cursor: pointer;">
+        {{ filename }}
+        <span class="alert-success float-right">Download</span>
+      </a><br>
+    </div>
+  </div>
+
+  <!-- User Table -->
+  <table border="1" class="mt-3">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Roles</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.roles }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- USER + DOCTOR -->
+<div *ngIf="showUserBoard || showDoctorBoard" class="profile-container">
+  <h2>Your Profile</h2>
+
+  <button (click)="uploadImage()">Upload</button>
+
+  <div *ngIf="profileImageUrls.length > 0">
+    <div *ngFor="let url of profileImageUrls">
+      <img [src]="url" alt="Profile Image" width="150"/>
+    </div>
+  </div>
+
+  <!-- File Upload -->
+  <form enctype="multipart/form-data">
+    <fieldset>
+      <div class="form-group">
+        <div>
+          <input type="file" (change)="onUploadFiles($event)" name="files" multiple class="form-control" />
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+  <!-- Progress Bar -->
+  <div *ngIf="fileStatus.status==='progress'" class="mt-2">
+    <div class="progress">
+      <div [style.width.%]="fileStatus.percent"
+           class="progress-bar progress-bar-animated bg-info"
+           role="progressbar">
+        {{ fileStatus.requestType }} {{ fileStatus.percent }}%
+      </div>
+    </div>
+  </div>
+
+  <!-- File List -->
+  <div *ngIf="filenames && filenames.length > 0" class="js-upload-finished mt-3">
+    <h3>Processed files</h3>
+    <div *ngFor="let filename of filenames" class="list-group">
+      <a (click)="onDownloadFile(filename)" class="list-group-item list-group-item-success" style="cursor: pointer;">
+        {{ filename }}
+        <span class="alert-success float-right">Download</span>
+      </a><br>
+    </div>
+  </div>
+
+  <!-- User Table -->
+  <table border="1" class="mt-3">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Roles</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.roles }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
